@@ -1,4 +1,5 @@
 var download = "";
+replaceList = []
 document.getElementById('buffer').style.display = 'none';
 document.getElementById('download').onclick = function() {
     if (download.length <= 0) return
@@ -287,11 +288,14 @@ $('form').jsonForm({
                   console.log(typeof(data))
                   $('buffer').html(data);
                   console.log(data.length)
-                  data.append('more stuff');
+                  data. +'more stuff' ;
                    console.log(data.length)
-                  console.log($('buffer').length)
-                  $('buffer').append('more stuff');
-                   console.log($('buffer').length)
+                   console.log(values);
+                   for(var i = 0; i<values.length; i++) {
+                        data= data.replace("{"+values.keys()[i]+"}", values[i])
+                   }
+                download = data
+                console.log(data.length)
                 });
             } else {
               alert('The File APIs are not fully supported in this browser.');
