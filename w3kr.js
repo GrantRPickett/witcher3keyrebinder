@@ -290,7 +290,7 @@ $('form').jsonForm({
                    console.log(keys.length);
                    for(var i = 0; i<keys.length; i++) {
                         console.log("replacing "+"{"+keys[i]+"}" + " with "+values[keys[i]])
-                        data= data.replace("\{"+keys[i]+"\}", values[keys[i]])
+                        data= data.replaceAll("\{"+keys[i]+"\}", values[keys[i]])
                    }
                 download = data
                 console.log(data.length)
@@ -303,4 +303,14 @@ $('form').jsonForm({
           }
         }
 })})();
+String.prototype.replaceAll = function(search, replace)
+{
+    //if replace is not sent, return original string otherwise it will
+    //replace search string with 'undefined'.
+    if (replace === undefined) {
+        return this.toString();
+    }
+
+    return this.replace(new RegExp('[' + search + ']', 'g'), replace);
+};
 
