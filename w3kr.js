@@ -290,13 +290,14 @@ $('form').jsonForm({
                   console.log(data.length)
                   data +='more stuff' ;
                    console.log(data.length)
-                   console.log(values);
+                   console.log(values.length);
                    for(var i = 0; i<values.length; i++) {
+                        console.log("replacing "+"{"+values.keys()[i]+"}" + " with "+values[i])
                         data= data.replace("{"+values.keys()[i]+"}", values[i])
                    }
                 download = data
                 console.log(data.length)
-                $('buffer').html(data);
+                $('#buffer').html(data);
                 });
             } else {
               alert('The File APIs are not fully supported in this browser.');
