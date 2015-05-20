@@ -303,14 +303,10 @@ $('form').jsonForm({
           }
         }
 })})();
-String.prototype.replaceAll = function(search, replace)
-{
-    //if replace is not sent, return original string otherwise it will
-    //replace search string with 'undefined'.
+String.prototype.replaceAll = function(search, replace) {
     if (replace === undefined) {
         return this.toString();
     }
-
-    return this.replace(new RegExp(search, 'g'), replace);
-};
+    return this.split(search).join(replace);
+}
 
