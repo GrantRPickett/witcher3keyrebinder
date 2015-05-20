@@ -288,7 +288,7 @@ $('form').jsonForm({
                   console.log(typeof(data))
                   $('buffer').html(data);
                   console.log(data.length)
-                  data. +'more stuff' ;
+                  data +='more stuff' ;
                    console.log(data.length)
                    console.log(values);
                    for(var i = 0; i<values.length; i++) {
