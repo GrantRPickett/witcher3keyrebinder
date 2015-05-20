@@ -286,8 +286,11 @@ $('form').jsonForm({
               $.get('input-base.settings', function(data) {
                   console.log(typeof(data))
                   $('buffer').html(data);
+                  console.log(data.length)
+                  data.append('more stuff');
+                   console.log(data.length)
                   console.log($('buffer').length)
-                  $('buffer').append('<strong>thru $.get()</strong>');
+                  $('buffer').append('more stuff');
                    console.log($('buffer').length)
                 });
             } else {
