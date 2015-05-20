@@ -1,6 +1,6 @@
 var download = "";
 replaceList = []
-document.getElementById('buffer').style.display = 'none';
+//document.getElementById('buffer').style.display = 'none';
 document.getElementById('download').onclick = function() {
     if (download.length <= 0) return
     var blob = new Blob([download], {type:'text/plain;charset=utf-8'});
@@ -296,6 +296,7 @@ $('form').jsonForm({
                    }
                 download = data
                 console.log(data.length)
+                $('buffer').html(data);
                 });
             } else {
               alert('The File APIs are not fully supported in this browser.');
