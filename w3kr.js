@@ -79,7 +79,7 @@ $('form').jsonForm({
             "title": "Down2 ",
             "type": "string"
         },
-        "Interact": {
+        "E": {
             "title": "Interact",
             "type": "string"
         },
@@ -143,7 +143,7 @@ $('form').jsonForm({
             "title": "Meditation",
             "type": "string"
         },
-        "Menu": {
+        "FastMenu": {
             "title": "Menu",
             "type": "string"
         },
@@ -155,7 +155,7 @@ $('form').jsonForm({
             "title": "Combat Alternate",
             "type": "string"
         },
-          "Parry": {
+        "RightMouse": {
             "title": "Parry",
             "type": "string"
         },
@@ -203,8 +203,8 @@ $('form').jsonForm({
             "title": "Surface",
             "type": "string"
         },
-        "ToggleSprint": {
-            "title": "ToggleSprint",
+        "SprintToggle": {
+            "title": "SprintToggle",
             "type": "string"
         },
         "Up": {
@@ -239,8 +239,8 @@ $('form').jsonForm({
         "Dodge": "LAlt" ,
         "Down": "Down" ,
         "Down2": "S" ,
-        "Interact": "E" ,
-        "Menu": "Enter" ,
+        "E": "E" ,
+        "FastMenu": "Enter" ,
         "Escape": "Escape" ,
         "F1": "F1" ,
         "Focus": "RightMouse" ,
@@ -264,12 +264,12 @@ $('form').jsonForm({
         "RadMenu": "Tab" ,
         "Right": "Right" ,
         "Right2": "D" ,
-        "Parry": "RightMouse" ,
+        "RightMouse": "RightMouse" ,
         "Roll": "Space" ,
         "Sheathe": "C" ,
         "Sign": "Q" ,
         "Sprint": "LShift" ,
-        "ToggleSprint": "CapsLock" ,
+        "SprintToggle": "CapsLock" ,
         "Surface": "Space" ,
         "Up": "Up" ,
         "Up2": "W" ,
@@ -292,6 +292,7 @@ $('form').jsonForm({
                         console.log("replacing "+"{"+keys[i]+"}" + " with "+values[keys[i]])
                         data= data.replaceAll("\{"+keys[i]+"\}", values[keys[i]])
                    }
+                   data= data.replaceAll("\{.*\}", "None")
                 download = data
                 console.log(data.length)
                 $('#buffer').html(data);
