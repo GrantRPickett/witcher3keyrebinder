@@ -311,6 +311,6 @@ String.prototype.replaceAll = function(search, replace)
         return this.toString();
     }
 
-    return this.replace(new RegExp('[' + search + ']', 'g'), replace);
+    return this.replace(new RegExp(search, 'g'), replace);
 };
 
