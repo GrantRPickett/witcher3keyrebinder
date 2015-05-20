@@ -1,6 +1,4 @@
 var download = "";
-replaceList = []
-//document.getElementById('buffer').style.display = 'none';
 document.getElementById('download').onclick = function() {
     if (download.length <= 0) return
     var blob = new Blob([download], {type:'text/plain;charset=utf-8'});
@@ -288,13 +286,11 @@ $('form').jsonForm({
                   console.log(typeof(data))
                   $('buffer').html(data);
                   console.log(data.length)
-                  data +='more stuff' ;
-                   console.log(data.length)
                    var keys = Object.keys(values)
                    console.log(keys.length);
                    for(var i = 0; i<keys.length; i++) {
                         console.log("replacing "+"{"+keys[i]+"}" + " with "+values[keys[i]])
-                        data= data.replace("{"+keys[i]+"}", values[keys[i]])
+                        data= data.replace("\{"+keys[i]+"\}", values[keys[i]])
                    }
                 download = data
                 console.log(data.length)
