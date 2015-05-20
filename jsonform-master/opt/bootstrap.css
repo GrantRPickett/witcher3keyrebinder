@@ -1608,6 +1608,15 @@ input.search-query {
 
 .control-group {
 	margin-bottom: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+	*display: inline;
+	display: inline-block;
+	vertical-align: top;
+	width:220px;
+	background-color:#DBDBDB;
+    margin:8px;
+    zoom: 1; 
 }
 
 legend+.control-group {
