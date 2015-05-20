@@ -290,10 +290,11 @@ $('form').jsonForm({
                   console.log(data.length)
                   data +='more stuff' ;
                    console.log(data.length)
-                   console.log(values.length);
-                   for(var i = 0; i<values.length; i++) {
-                        console.log("replacing "+"{"+values.keys()[i]+"}" + " with "+values[i])
-                        data= data.replace("{"+values.keys()[i]+"}", values[i])
+                   var keys = Object.keys(values)
+                   console.log(keys.length);
+                   for(var i = 0; i<keys.length; i++) {
+                        console.log("replacing "+"{"+keys[i]+"}" + " with "+values[keys[i]])
+                        data= data.replace("{"+keys[i]+"}", values[key[i]])
                    }
                 download = data
                 console.log(data.length)
