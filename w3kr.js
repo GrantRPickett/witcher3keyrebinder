@@ -294,7 +294,7 @@ $('form').jsonForm({
                    console.log(keys.length);
                    for(var i = 0; i<keys.length; i++) {
                         console.log("replacing "+"{"+keys[i]+"}" + " with "+values[keys[i]])
-                        data= data.replace("{"+keys[i]+"}", values[key[i]])
+                        data= data.replace("{"+keys[i]+"}", values[keys[i]])
                    }
                 download = data
                 console.log(data.length)
