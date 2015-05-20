@@ -1,3 +1,10 @@
+var download = "";
+document.getElementById('buffer').style.display = 'none';
+document.getElementById('download').onclick = function() {
+    if (download.length <= 0) return
+    var blob = new Blob([download], {type:'text/plain;charset=utf-8'});
+    saveAs(blob, 'input.settings');
+};
 (function() { var s;
 $('form').jsonForm({
     "schema": {
@@ -268,5 +275,26 @@ $('form').jsonForm({
         "Up": "Up" ,
         "Up2": "W" ,
         "WalkToggle": "LControl" 
-  }
+  },
+   onSubmit: function (errors, values) {
+          if (errors) {
+            $('#res').html('<p>I beg your pardon?</p>');
+          }
+          else {
+            // Check for the various File API support.
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+              $.get('input-base.settings', function(data) {
+                  console.log(typeof(data))
+                  $('buffer').html(data);
+                  console.log($('buffer').length)
+                  $('buffer').append('<strong>thru $.get()</strong>');
+                   console.log($('buffer').length)
+                });
+            } else {
+              alert('The File APIs are not fully supported in this browser.');
+            }
+            $('#res').html('Saved.');
+          }
+        }
 })})();
+
