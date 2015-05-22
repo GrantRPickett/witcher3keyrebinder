@@ -1,1 +1,2401 @@
-var download="";document.getElementById("download").onclick=function(){if(!(download.length<=0)){var t=new Blob([download],{type:"text/plain;charset=utf-8"});saveAs(t,"input.settings")}},function(){$("form").jsonForm({schema:{1:{title:"Steel Sword",type:"string"},2:{title:"Silver Sword",type:"string"},3:{title:"Aard",type:"string"},4:{title:"Yrden",type:"string"},5:{title:"Igni",type:"string"},6:{title:"Quen",type:"string"},7:{title:"Axii",type:"string"},Alch:{title:"Alchemy",type:"string"},Bestiary:{title:"Bestiary",type:"string"},CameraLock:{title:"CameraLock",type:"string"},Candle:{title:"Incenerate/Extinguish (rebind for looting)",type:"string"},CantorGallop:{title:"CantorGallop",type:"string"},Character:{title:"Character",type:"string"},Craft:{title:"Craft",type:"string"},DiveDown:{title:"DiveDown",type:"string"},Dodge:{title:"Dodge",type:"string"},Down:{title:"Down",type:"string"},Down2:{title:"Down2 ",type:"string"},E:{title:"Interact",type:"string"},Escape:{title:"Escape",type:"string"},F1:{title:"Show keys",type:"string"},FastTravel:{title:"FastTravel (avoid interact with people nearby)",type:"string"},Focus:{title:"Focus (Dectective Mode)",type:"string"},Follow:{title:"Follow",type:"string"},GatherHerbs:{title:"Gather Herbs (Picky Interact)",type:"string"},Glossary:{title:"Glossary",type:"string"},Gwint:{title:"Gwint",type:"string"},Horse:{title:"Horse",type:"string"},Inv:{title:"Inv",type:"string"},Journal:{title:"Journal",type:"string"},Jump:{title:"Jump",type:"string"},Left:{title:"Left",type:"string"},Left2:{title:"Left2",type:"string"},LeftMouse:{title:"LeftMouse",type:"string"},Map:{title:"Map",type:"string"},Meditation:{title:"Meditation",type:"string"},FastMenu:{title:"Menu",type:"string"},MiddleMouse:{title:"MiddleMouse",type:"string"},PCALT:{title:"Combat Alternate",type:"string"},RightMouse:{title:"Parry",type:"string"},Potion1:{title:"Potion1",type:"string"},Potion2:{title:"Potion2",type:"string"},Quest:{title:"Quest",type:"string"},RadMenu:{title:"Radial Menu (signs and wep wheel)",type:"string"},Right:{title:"Right",type:"string"},Right2:{title:"Right2",type:"string"},Roll:{title:"Roll",type:"string"},Sheathe:{title:"Sheathe",type:"string"},Sign:{title:"Sign",type:"string"},Sprint:{title:"Sprint",type:"string"},Surface:{title:"Surface",type:"string"},SprintToggle:{title:"SprintToggle",type:"string"},Up:{title:"Up",type:"string"},Up2:{title:"Up2",type:"string"},WalkToggle:{title:"WalkToggle",type:"string"}},value:{1:"1",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",Alch:"L",Bestiary:"B",CameraLock:"Z",Candle:"E",CantorGallop:"LShift",Character:"K",Craft:"O",DiveDown:"C",Dodge:"LAlt",Down:"Down",Down2:"S",E:"E",FastMenu:"Enter",FastTravel:"E",Escape:"Escape",F1:"F1",Focus:"RightMouse",Follow:"X",GatherHerbs:"E",Glossary:"G",Gwint:"H",Horse:"X",Inv:"I",Journal:"J",Jump:"Space",Left:"Left",Left2:"A",LeftMouse:"LeftMouse",Map:"M",Meditation:"N",MiddleMouse:"MiddleMouse",PCALT:"LShift",Potion1:"R",Potion2:"F",Quest:"V",RadMenu:"Tab",Right:"Right",Right2:"D",RightMouse:"RightMouse",Roll:"Space",Sheathe:"C",Sign:"Q",Sprint:"LShift",SprintToggle:"CapsLock",Surface:"Space",Up:"Up",Up2:"W",WalkToggle:"LControl"},onSubmit:function(t,e){t?$("#res").html("<p>I beg your pardon?</p>"):(window.File&&window.FileReader&&window.FileList&&window.Blob?$.get("input-base.settings",function(t){console.log(typeof t),$("buffer").html(t),console.log(t.length);var i=Object.keys(e);console.log(i.length);for(var n=0;n<i.length;n++)console.log("replacing {"+i[n]+"} with "+e[i[n]]),t=t.replaceAll("{"+i[n]+"}",e[i[n]]);t=t.replaceAll("{.*}","None"),download=t,console.log(t.length),$("#buffer").html(t)}):alert("The File APIs are not fully supported in this browser."),$("#res").html("Saved."))}})}(),String.prototype.replaceAll=function(t,e){return void 0===e?this.toString():this.split(t).join(e)};
+var download = "";
+var b = "[BASE_ALL_ATTACKS]\n"+
+"IK_None=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=AttackHeavy)\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_Pad_X_SQUARE=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_X_SQUARE=(Action=AttackLight)\n"+
+"\n"+
+"[BASE_ATTACKS_NO_LIGHT]\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_None=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=AttackHeavy)\n"+
+"\n"+
+"[BASE_ATTACK_HEAVY]\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=AttackHeavy)\n"+
+"\n"+
+"[BASE_ATTACK_LIGHT]\n"+
+"IK_Pad_X_SQUARE=(Action=AttackLight)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"\n"+
+"[BASE_CameraMovement]\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"\n"+
+"[BASE_CharacterMovement]\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"\n"+
+"[BASE_CharacterMovementWithSprint]\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"\n"+
+"[BASE_DEBUG]\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"\n"+
+"[BASE_DRAW_SWORDS]\n"+
+"IK_Pad_DigitLeft=(Action=SteelSword)\n"+
+"IK_Pad_DigitLeft=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_DigitRight=(Action=SilverSword)\n"+
+"IK_Pad_DigitRight=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"\n"+
+"[BASE_DRAW_SWORDS_KEYBOARD]\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"\n"+
+"[BASE_DRINK_POTIONS]\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"\n"+
+"[BASE_FocusMode]\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"\n"+
+"[BASE_INTERACTIONS_HORSE]\n"+
+"IK_Pad_A_CROSS=(Action=Follow)\n"+
+"IK_{Follow}=(Action=Follow)\n"+
+"\n"+
+"[BASE_INTERACTIONS_KEYBOARD]\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"\n"+
+"[BASE_INTERACTIONS_PAD]\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"\n"+
+"[BASE_Interactions]\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"\n"+
+"[BASE_Items]\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"\n"+
+"[BASE_JOURNAL_AND_QUEST_MANAGE]\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"\n"+
+"[BASE_PanelsShortcuts]\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"\n"+
+"[BASE_SHOW_RADIAL_MENU]\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"\n"+
+"[BASE_SPECIAL_ATTACK_HEAVY]\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"\n"+
+"[BASE_SPECIAL_ATTACK_LIGHT]\n"+
+"IK_Pad_X_SQUARE=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"\n"+
+"[BASE_Signs]\n"+
+"IK_Pad_RightTrigger=(Action=CastSignHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightTrigger=(Action=CastSign)\n"+
+"IK_{3}=(Action=SelectAard)\n"+
+"IK_{4}=(Action=SelectYrden)\n"+
+"IK_{5}=(Action=SelectIgni)\n"+
+"IK_{6}=(Action=SelectQuen)\n"+
+"IK_{Sign}=(Action=CastSign)\n"+
+"IK_{Sign}=(Action=CastSignHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{7}=(Action=SelectAxii)\n"+
+"\n"+
+"[Boat]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_{MiddleMouse}=(Action=VehicleItemActionHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=VehicleItemAction)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_RightShoulder=(Action=VehicleItemActionHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=VehicleItemAction)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"IK_{Focus}=(Action=GI_Accelerate)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_Pad_X_SQUARE=(Action=GI_Decelerate)\n"+
+"IK_Pad_B_CIRCLE=(Action=VehicleItemActionAbort)\n"+
+"IK_Pad_B_CIRCLE=(Action=BoatDismount)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Jump}=(Action=VehicleItemActionAbort)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{E}=(Action=BoatDismount)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_Pad_A_CROSS=(Action=GI_Accelerate)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Down2}=(Action=GI_Decelerate)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"\n"+
+"[BoatPassenger]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_Pad_B_CIRCLE=(Action=BoatDismount)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{E}=(Action=BoatDismount)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"\n"+
+"[Combat]\n"+
+"IK_{Dodge}=(Action=Dodge)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_Pad_A_CROSS=(Action=CbtRoll)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_None=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{3}=(Action=SelectAard)\n"+
+"IK_{4}=(Action=SelectYrden)\n"+
+"IK_{5}=(Action=SelectIgni)\n"+
+"IK_{6}=(Action=SelectQuen)\n"+
+"IK_Pad_LeftThumb=(Action=SpawnHorse)\n"+
+"IK_{7}=(Action=SelectAxii)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_Pad_RightTrigger=(Action=CastSignHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightTrigger=(Action=CastSign)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Up}=(Action=MovementDoubleTapW)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Left2}=(Action=MovementDoubleTapA)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Right2}=(Action=MovementDoubleTapD)\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_Pad_B_CIRCLE=(Action=Dodge)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Sign}=(Action=CastSign)\n"+
+"IK_{Sign}=(Action=CastSignHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Left}=(Action=MovementDoubleTapA)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Down2}=(Action=MovementDoubleTapS)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=AttackHeavy)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_DigitRight=(Action=SilverSword)\n"+
+"IK_Pad_DigitRight=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_DigitRight=(Action=ComboDigitRight)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Up2}=(Action=MovementDoubleTapW)\n"+
+"IK_{Horse}=(Action=SpawnHorse)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_{RightMouse}=(Action=LockAndGuard)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_Pad_LeftTrigger=(Action=LockAndGuard)\n"+
+"IK_Pad_LeftTrigger=(Action=Alternate)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Right}=(Action=MovementDoubleTapD)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_Pad_X_SQUARE=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_X_SQUARE=(Action=AttackLight)\n"+
+"IK_{Jump}=(Action=CbtRoll)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_MouseZ=(Action=ToggleSigns)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Down}=(Action=MovementDoubleTapS)\n"+
+"IK_Pad_DigitLeft=(Action=SteelSword)\n"+
+"IK_Pad_DigitLeft=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_DigitLeft=(Action=ComboDigitLeft)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"\n"+
+"[Combat_Replacer_Ciri]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_Pad_RightTrigger=(Action=CiriSpecialAttack)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_Pad_X_SQUARE=(Action=AttackLight)\n"+
+"IK_Pad_DigitRight=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_B_CIRCLE=(Action=CiriDodge)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Jump}=(Action=CiriDodge)\n"+
+"IK_{Jump}=(Action=CiriDash)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_Pad_LeftTrigger=(Action=LockAndGuard)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{RightMouse}=(Action=LockAndGuard)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_Pad_DigitLeft=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=CiriSpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=CiriAttackHeavy)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_Pad_A_CROSS=(Action=CiriDash)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Sign}=(Action=CiriSpecialAttack)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"\n"+
+"[Death]\n"+
+"\n"+
+"[Diving]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_Pad_X_SQUARE=(Action=DiveDown)\n"+
+"IK_Pad_B_CIRCLE=(Action=ExplorationInteraction)\n"+
+"IK_Pad_B_CIRCLE=(Action=DiveUp)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Jump}=(Action=ExplorationInteraction)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{DiveDown}=(Action=DiveDown)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_MouseZ=(Action=ToggleSigns)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Surface}=(Action=DiveUp)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"\n"+
+"[EMPTY_CONTEXT]\n"+
+"\n"+
+"[Exploration]\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_None=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_{WalkToggle}=(Action=WalkToggle)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{3}=(Action=SelectAard)\n"+
+"IK_{4}=(Action=SelectYrden)\n"+
+"IK_{5}=(Action=SelectIgni)\n"+
+"IK_{6}=(Action=SelectQuen)\n"+
+"IK_Pad_LeftThumb=(Action=SpawnHorse)\n"+
+"IK_{7}=(Action=SelectAxii)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_Pad_RightTrigger=(Action=CastSignHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightTrigger=(Action=CastSign)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_Pad_B_CIRCLE=(Action=Roll)\n"+
+"IK_Pad_B_CIRCLE=(Action=ExplorationInteraction)\n"+
+"IK_Pad_B_CIRCLE=(Action=Jump)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Sign}=(Action=CastSign)\n"+
+"IK_{Sign}=(Action=CastSignHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=SpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=AttackHeavy)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_DigitRight=(Action=SilverSword)\n"+
+"IK_Pad_DigitRight=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Horse}=(Action=SpawnHorse)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_X_SQUARE=(Action=SpecialAttackLight,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_X_SQUARE=(Action=AttackLight)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_{Jump}=(Action=ExplorationInteraction)\n"+
+"IK_{Jump}=(Action=Jump)\n"+
+"IK_{Roll}=(Action=Roll)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_MouseZ=(Action=ToggleSigns)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_Pad_DigitLeft=(Action=SteelSword)\n"+
+"IK_Pad_DigitLeft=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"\n"+
+"[Exploration_Replacer_Ciri]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_Pad_RightTrigger=(Action=CiriSpecialAttack)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{1}=(Action=CiriDrawWeapon)\n"+
+"IK_{2}=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_X_SQUARE=(Action=AttackLight)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_Pad_DigitRight=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_DigitRight=(Action=CiriHolsterWeapon,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_B_CIRCLE=(Action=Roll)\n"+
+"IK_Pad_B_CIRCLE=(Action=ExplorationInteraction)\n"+
+"IK_Pad_B_CIRCLE=(Action=Jump)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Jump}=(Action=ExplorationInteraction)\n"+
+"IK_{Jump}=(Action=Jump)\n"+
+"IK_{Roll}=(Action=Roll)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_Pad_DigitLeft=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_DigitLeft=(Action=CiriHolsterWeapon,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=CiriSpecialAttackHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=CiriAttackHeavy)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_{LeftMouse}=(Action=SpecialAttackWithAlternateLight,State=Duration,IdleTime=0.2)\n"+
+"IK_{LeftMouse}=(Action=AttackWithAlternateLight)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Sign}=(Action=CiriSpecialAttack)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_None=(Action=AttackWithAlternateHeavy)\n"+
+"IK_None=(Action=SpecialAttackWithAlternateHeavy,State=Duration,IdleTime=0.2)\n"+
+"IK_{WalkToggle}=(Action=WalkToggle)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{PCALT}=(Action=PCAlternate)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"\n"+
+"[FakeAxisInput]\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"\n"+
+"[FastMenu]\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"\n"+
+"[Horse]\n"+
+"IK_Pad_A_CROSS=(Action=Canter)\n"+
+"IK_Pad_A_CROSS=(Action=Gallop,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_A_CROSS=(Action=Follow)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_Pad_RightTrigger=(Action=VehicleCastSign)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=HorseDismount)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"IK_{Follow}=(Action=Follow)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_Pad_B_CIRCLE=(Action=HorseJump)\n"+
+"IK_Pad_B_CIRCLE=(Action=HorseDismount,State=Duration,IdleTime=10000)\n"+
+"IK_Pad_B_CIRCLE=(Action=VehicleItemActionAbort)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Sign}=(Action=VehicleCastSign)\n"+
+"IK_{CantorGallop}=(Action=Canter)\n"+
+"IK_{CantorGallop}=(Action=Gallop,State=Duration,IdleTime=0.3)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=VehicleAttack)\n"+
+"IK_Pad_DigitRight=(Action=SilverSword)\n"+
+"IK_Pad_DigitRight=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Horse}=(Action=Stop)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"IK_{LeftMouse}=(Action=VehicleAttack)\n"+
+"IK_Pad_RightShoulder=(Action=VehicleItemActionHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=VehicleItemAction)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_X_SQUARE=(Action=VehicleAttack)\n"+
+"IK_{Jump}=(Action=HorseJump)\n"+
+"IK_{Jump}=(Action=VehicleItemActionAbort)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_Pad_DigitLeft=(Action=SteelSword)\n"+
+"IK_Pad_DigitLeft=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{MiddleMouse}=(Action=VehicleItemActionHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=VehicleItemAction)\n"+
+"\n"+
+"[Horse_Replacer_Ciri]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{Follow}=(Action=Follow)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{1}=(Action=CiriDrawWeapon)\n"+
+"IK_{2}=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_X_SQUARE=(Action=VehicleAttack)\n"+
+"IK_Pad_DigitRight=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_DigitRight=(Action=CiriHolsterWeapon,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_B_CIRCLE=(Action=HorseJump)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Jump}=(Action=HorseJump)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=HorseDismount)\n"+
+"IK_Pad_DigitLeft=(Action=CiriDrawWeapon)\n"+
+"IK_Pad_DigitLeft=(Action=CiriHolsterWeapon,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_Y_TRIANGLE=(Action=VehicleAttack)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_Pad_A_CROSS=(Action=Canter)\n"+
+"IK_Pad_A_CROSS=(Action=Gallop,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_A_CROSS=(Action=Follow)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{LeftMouse}=(Action=VehicleAttack)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{CantorGallop}=(Action=Canter)\n"+
+"IK_{CantorGallop}=(Action=Gallop,State=Duration,IdleTime=0.3)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Horse}=(Action=Stop)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"\n"+
+"[InputSettings]\n"+
+"Version=21\n"+
+"\n"+
+"[JumpClimb]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"IK_Pad_X_SQUARE=(Action=DiveDown)\n"+
+"IK_Pad_DigitRight=(Action=SilverSword)\n"+
+"IK_Pad_DigitRight=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_Pad_B_CIRCLE=(Action=Roll)\n"+
+"IK_Pad_B_CIRCLE=(Action=ExplorationInteraction)\n"+
+"IK_Pad_B_CIRCLE=(Action=Jump)\n"+
+"IK_{Jump}=(Action=ExplorationInteraction)\n"+
+"IK_{Jump}=(Action=Jump)\n"+
+"IK_{Roll}=(Action=Roll)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"IK_{DiveDown}=(Action=DiveDown)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_Pad_DigitLeft=(Action=SteelSword)\n"+
+"IK_Pad_DigitLeft=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_MouseZ=(Action=ToggleSigns)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"\n"+
+"[LootPopup]\n"+
+"\n"+
+"[Meditation]\n"+
+"IK_{Jump}=(Action=MeditationAbort)\n"+
+"IK_Pad_B_CIRCLE=(Action=MeditationAbort)\n"+
+"\n"+
+"[RadialMenu]\n"+
+"IK_Pad_LeftTrigger=(Action=LockAndGuard)\n"+
+"IK_Pad_LeftTrigger=(Action=Alternate)\n"+
+"IK_{Jump}=(Action=OpenMeditation)\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_Pad_X_SQUARE=(Action=OpenMeditation)\n"+
+"IK_{RightMouse}=(Action=LockAndGuard)\n"+
+"IK_{MiddleMouse}=(Action=OpenMeditation)\n"+
+"IK_Pad_B_CIRCLE=(Action=CloseRadialMenu)\n"+
+"IK_Pad_A_CROSS=(Action=ConfirmRadialMenuSelection)\n"+
+"\n"+
+"[SCENE_IS_STARTING_HACK]\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"\n"+
+"[Scene]\n"+
+"IK_{Down2}=(Action=ChangeChoiceDown)\n"+
+"IK_{Up2}=(Action=ChangeChoiceUp)\n"+
+"IK_Pad_LeftShoulder=(Action=SCN_DBG_RestartScene,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_LeftShoulder=(Action=SCN_DBG_RestartSection)\n"+
+"IK_Pad_LeftAxisY=(Action=ChangeChoiceAxis)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_DigitDown=(Action=ChangeChoiceUp)\n"+
+"IK_Pad_DigitUp=(Action=ChangeChoiceDown)\n"+
+"\n"+
+"[ScriptedAction]\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_Pad_A_CROSS=(Action=Gallop,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_{CantorGallop}=(Action=Gallop,State=Duration,IdleTime=0.2)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"\n"+
+"[Swimming]\n"+
+"IK_{RadMenu}=(Action=RadialMenu)\n"+
+"IK_Pad_LeftShoulder=(Action=RadialMenu)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"IK_Pad_Start=(Action=ShowEntryInPanel)\n"+
+"IK_Pad_Start=(Action=FastMenu)\n"+
+"IK_Pad_Start=(Action=PanelMap,State=Duration,IdleTime=0.5)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_{Focus}=(Action=Focus,Reprocess)\n"+
+"IK_Pad_RightTrigger=(Action=Spare)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=HoldFastMenu,State=Duration,IdleTime=0.3)\n"+
+"IK_PS4_TOUCH_PRESS=(Action=FastMenu)\n"+
+"IK_Pad_X_SQUARE=(Action=Finisher)\n"+
+"IK_Pad_X_SQUARE=(Action=Finish)\n"+
+"IK_Pad_X_SQUARE=(Action=DiveDown)\n"+
+"IK_Pad_B_CIRCLE=(Action=ExplorationInteraction)\n"+
+"IK_Pad_B_CIRCLE=(Action=DiveUp)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_{Jump}=(Action=ExplorationInteraction)\n"+
+"IK_Pad_DigitDown=(Action=DrinkPotion2)\n"+
+"IK_{F1}=(Action=OnShowControlsHelp)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_DigitUp=(Action=DrinkPotion1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{FastMenu}=(Action=HoldFastMenu,State=Duration,IdleTime=0.2)\n"+
+"IK_{FastMenu}=(Action=FastMenu)\n"+
+"IK_Pad_LeftTrigger=(Action=Focus,Reprocess)\n"+
+"IK_{Bestiary}=(Action=PanelBestiary)\n"+
+"IK_{DiveDown}=(Action=DiveDown)\n"+
+"IK_Pad_RightThumb=(Action=TrackQuest)\n"+
+"IK_Pad_RightThumb=(Action=HighlightObjective)\n"+
+"IK_Pad_RightThumb=(Action=CameraLock)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{E}=(Action=BurnBody)\n"+
+"IK_{E}=(Action=WineSlot)\n"+
+"IK_{E}=(Action=PlaceBottle)\n"+
+"IK_{E}=(Action=SitAndWait)\n"+
+"IK_{E}=(Action=HideBible)\n"+
+"IK_{E}=(Action=CallJohnny)\n"+
+"IK_{Candle}=(Action=Extinguish)\n"+
+"IK_{E}=(Action=Interaction)\n"+
+"IK_{E}=(Action=PullAxe)\n"+
+"IK_{E}=(Action=Read)\n"+
+"IK_{E}=(Action=UseItem)\n"+
+"IK_{E}=(Action=UnblockGate)\n"+
+"IK_{Candle}=(Action=Ignite)\n"+
+"IK_{E}=(Action=Free)\n"+
+"IK_{E}=(Action=Grab)\n"+
+"IK_{E}=(Action=PlaceOffering)\n"+
+"IK_{E}=(Action=Drink)\n"+
+"IK_{E}=(Action=PlaceHerbs)\n"+
+"IK_{E}=(Action=GatherBrushwood)\n"+
+"IK_{E}=(Action=Disarm)\n"+
+"IK_{E}=(Action=Arm)\n"+
+"IK_{E}=(Action=PrayForStorm)\n"+
+"IK_{E}=(Action=PrayForSun)\n"+
+"IK_{E}=(Action=Destroy)\n"+
+"IK_{E}=(Action=Locked)\n"+
+"IK_{E}=(Action=Pull)\n"+
+"IK_{E}=(Action=Push)\n"+
+"IK_{E}=(Action=Take)\n"+
+"IK_{E}=(Action=Unlock)\n"+
+"IK_{E}=(Action=Lock)\n"+
+"IK_{E}=(Action=Close)\n"+
+"IK_{E}=(Action=Open)\n"+
+"IK_{E}=(Action=UseDevice)\n"+
+"IK_{E}=(Action=Use)\n"+
+"IK_{E}=(Action=InteractHold,State=Duration,IdleTime=0.1)\n"+
+"IK_{E}=(Action=Interact)\n"+
+"IK_{E}=(Action=Container)\n"+
+"IK_{E}=(Action=Talk)\n"+
+"IK_{E}=(Action=MountHorse)\n"+
+"IK_{E}=(Action=EnterBoatFromSwimming)\n"+
+"IK_{E}=(Action=EnterBoat)\n"+
+"IK_{E}=(Action=Examine)\n"+
+"IK_{GatherHerbs}=(Action=GatherHerbs)\n"+
+"IK_{FastTravel}=(Action=FastTravel)\n"+
+"IK_{E}=(Action=Unequip)\n"+
+"IK_{E}=(Action=Spare)\n"+
+"IK_{E}=(Action=Knock)\n"+
+"IK_{E}=(Action=SitDown)\n"+
+"IK_{E}=(Action=PlaceCrystal)\n"+
+"IK_{E}=(Action=PlaceOilLamp)\n"+
+"IK_{E}=(Action=PickOilLamp)\n"+
+"IK_{Potion2}=(Action=DrinkPotion2)\n"+
+"IK_Pad_Back_Select=(Action=IngameMenu)\n"+
+"IK_Pad_Back_Select=(Action=GotoGlossary,State=Duration,IdleTime=1.2)\n"+
+"IK_{Glossary}=(Action=GotoGlossary)\n"+
+"IK_{Glossary}=(Action=PanelGlossary)\n"+
+"IK_{Gwint}=(Action=PanelGwintDeckEditor)\n"+
+"IK_PS4_OPTIONS=(Action=ShowEntryInPanel)\n"+
+"IK_PS4_OPTIONS=(Action=IngameMenu)\n"+
+"IK_{Inv}=(Action=PanelInv)\n"+
+"IK_Pad_A_CROSS=(Action=BurnBody)\n"+
+"IK_Pad_A_CROSS=(Action=WineSlot)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceBottle)\n"+
+"IK_Pad_A_CROSS=(Action=SitAndWait)\n"+
+"IK_Pad_A_CROSS=(Action=HideBible)\n"+
+"IK_Pad_A_CROSS=(Action=CallJohnny)\n"+
+"IK_Pad_A_CROSS=(Action=Extinguish)\n"+
+"IK_Pad_A_CROSS=(Action=Interaction)\n"+
+"IK_Pad_A_CROSS=(Action=PullAxe)\n"+
+"IK_Pad_A_CROSS=(Action=Read)\n"+
+"IK_Pad_A_CROSS=(Action=UseItem)\n"+
+"IK_Pad_A_CROSS=(Action=UnblockGate)\n"+
+"IK_Pad_A_CROSS=(Action=Ignite)\n"+
+"IK_Pad_A_CROSS=(Action=Free)\n"+
+"IK_Pad_A_CROSS=(Action=Grab)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOffering)\n"+
+"IK_Pad_A_CROSS=(Action=Drink)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=GatherBrushwood)\n"+
+"IK_Pad_A_CROSS=(Action=Disarm)\n"+
+"IK_Pad_A_CROSS=(Action=Arm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForStorm)\n"+
+"IK_Pad_A_CROSS=(Action=PrayForSun)\n"+
+"IK_Pad_A_CROSS=(Action=Destroy)\n"+
+"IK_Pad_A_CROSS=(Action=Locked)\n"+
+"IK_Pad_A_CROSS=(Action=Pull)\n"+
+"IK_Pad_A_CROSS=(Action=Push)\n"+
+"IK_Pad_A_CROSS=(Action=Take)\n"+
+"IK_Pad_A_CROSS=(Action=Unlock)\n"+
+"IK_Pad_A_CROSS=(Action=Lock)\n"+
+"IK_Pad_A_CROSS=(Action=Close)\n"+
+"IK_Pad_A_CROSS=(Action=Open)\n"+
+"IK_Pad_A_CROSS=(Action=UseDevice)\n"+
+"IK_Pad_A_CROSS=(Action=Use)\n"+
+"IK_Pad_A_CROSS=(Action=InteractHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_A_CROSS=(Action=Interact)\n"+
+"IK_Pad_A_CROSS=(Action=Container)\n"+
+"IK_Pad_A_CROSS=(Action=Talk)\n"+
+"IK_Pad_A_CROSS=(Action=MountHorse)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoatFromSwimming)\n"+
+"IK_Pad_A_CROSS=(Action=EnterBoat)\n"+
+"IK_Pad_A_CROSS=(Action=Examine)\n"+
+"IK_Pad_A_CROSS=(Action=GatherHerbs)\n"+
+"IK_Pad_A_CROSS=(Action=FastTravel)\n"+
+"IK_Pad_A_CROSS=(Action=Unequip)\n"+
+"IK_Pad_A_CROSS=(Action=Knock)\n"+
+"IK_Pad_A_CROSS=(Action=SitDown)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceCrystal)\n"+
+"IK_Pad_A_CROSS=(Action=PlaceOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=PickOilLamp)\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Journal}=(Action=PanelJour)\n"+
+"IK_{Character}=(Action=PanelChar)\n"+
+"IK_{Escape}=(Action=ShowEntryInPanel)\n"+
+"IK_{Escape}=(Action=IngameMenu)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Alch}=(Action=PanelAlch)\n"+
+"IK_{Map}=(Action=PanelMap)\n"+
+"IK_{LeftMouse}=(Action=Finisher)\n"+
+"IK_{LeftMouse}=(Action=Finish)\n"+
+"IK_{Meditation}=(Action=PanelMeditation)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_{Craft}=(Action=PanelCrafting)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{FastMenu}=(Action=HubMenu)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_{Potion1}=(Action=DrinkPotion1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Quest}=(Action=TrackQuest)\n"+
+"IK_{Quest}=(Action=HighlightObjective)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_MouseZ=(Action=ToggleSigns)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Surface}=(Action=DiveUp)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{CameraLock}=(Action=CameraLock)\n"+
+"\n"+
+"[ThrowHold]\n"+
+"IK_Pad_A_CROSS=(Action=Sprint)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Down}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_NumPad1=(Action=Debug_KillAllEnemies)\n"+
+"IK_NumPad2=(Action=Debug_KillTarget)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Right}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_NumPad5=(Action=Debug_Resurrect)\n"+
+"IK_{SprintToggle}=(Action=SprintToggle)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Left2}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_{Left}=(Action=GI_AxisLeftX,State=Axis,Value=-1)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisX=(Action=GI_AxisLeftX)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_Pad_LeftAxisY=(Action=GI_AxisLeftY)\n"+
+"IK_{Sheathe}=(Action=SwordSheathe)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_{Right2}=(Action=GI_AxisLeftX,State=Axis,Value=1)\n"+
+"IK_Pad_DigitLeft=(Action=SteelSword)\n"+
+"IK_Pad_DigitLeft=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_DigitRight=(Action=SilverSword)\n"+
+"IK_Pad_DigitRight=(Action=SwordSheathe,State=Duration,IdleTime=0.3)\n"+
+"IK_Pad_B_CIRCLE=(Action=DebugInput)\n"+
+"IK_Pad_B_CIRCLE=(Action=ThrowCastAbort)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_{MiddleMouse}=(Action=ThrowItem)\n"+
+"IK_{Jump}=(Action=ThrowCastAbort)\n"+
+"IK_{Craft}=(Action=PanelFakeHud)\n"+
+"IK_Pad_RightAxisX=(Action=GI_AxisRightX)\n"+
+"IK_Pad_RightAxisY=(Action=GI_AxisRightY)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItemHold,State=Duration,IdleTime=0.2)\n"+
+"IK_Pad_RightShoulder=(Action=ThrowItem)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Down2}=(Action=GI_AxisLeftY,State=Axis,Value=-1)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Up}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_MouseX=(Action=GI_MouseDampX)\n"+
+"IK_MouseY=(Action=GI_MouseDampY)\n"+
+"IK_{Sprint}=(Action=Sprint)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_{Up2}=(Action=GI_AxisLeftY,State=Axis,Value=1)\n"+
+"IK_None=(Action=DebugInput)\n"+
+"IK_{1}=(Action=SwordSheatheSteel,State=Duration,IdleTime=0.3)\n"+
+"IK_{1}=(Action=SteelSword)\n"+
+"IK_{2}=(Action=SwordSheatheSilver,State=Duration,IdleTime=0.3)\n"+
+"IK_{2}=(Action=SilverSword)\n"+
+"\n"+
+"[TutorialPopup]\n"+
+"\n"+
+"\n"
+document.getElementById("download").onclick = function() {
+        if (!(download.length <= 0)) {
+            var t = new Blob([download], {
+                type: "text/plain;charset=utf-8"
+            });
+            saveAs(t, "input.settings")
+        }
+    },
+    function() {
+        $("form").jsonForm({
+            schema: {
+                1: {
+                    title: "Steel Sword",
+                    type: "string"
+                },
+                2: {
+                    title: "Silver Sword",
+                    type: "string"
+                },
+                3: {
+                    title: "Aard",
+                    type: "string"
+                },
+                4: {
+                    title: "Yrden",
+                    type: "string"
+                },
+                5: {
+                    title: "Igni",
+                    type: "string"
+                },
+                6: {
+                    title: "Quen",
+                    type: "string"
+                },
+                7: {
+                    title: "Axii",
+                    type: "string"
+                },
+                Alch: {
+                    title: "Alchemy",
+                    type: "string"
+                },
+                Bestiary: {
+                    title: "Bestiary",
+                    type: "string"
+                },
+                CameraLock: {
+                    title: "CameraLock",
+                    type: "string"
+                },
+                Candle: {
+                    title: "Incenerate/Extinguish (rebind for looting)",
+                    type: "string"
+                },
+                CantorGallop: {
+                    title: "CantorGallop",
+                    type: "string"
+                },
+                Character: {
+                    title: "Character",
+                    type: "string"
+                },
+                Craft: {
+                    title: "Craft",
+                    type: "string"
+                },
+                DiveDown: {
+                    title: "DiveDown",
+                    type: "string"
+                },
+                Dodge: {
+                    title: "Dodge",
+                    type: "string"
+                },
+                Down: {
+                    title: "Down",
+                    type: "string"
+                },
+                Down2: {
+                    title: "Down2 ",
+                    type: "string"
+                },
+                E: {
+                    title: "Interact",
+                    type: "string"
+                },
+                Escape: {
+                    title: "Escape",
+                    type: "string"
+                },
+                F1: {
+                    title: "Show keys",
+                    type: "string"
+                },
+                FastTravel: {
+                    title: "FastTravel (avoid interact with people nearby)",
+                    type: "string"
+                },
+                Focus: {
+                    title: "Focus (Dectective Mode)",
+                    type: "string"
+                },
+                Follow: {
+                    title: "Follow",
+                    type: "string"
+                },
+                GatherHerbs: {
+                    title: "Gather Herbs (Picky Interact)",
+                    type: "string"
+                },
+                Glossary: {
+                    title: "Glossary",
+                    type: "string"
+                },
+                Gwint: {
+                    title: "Gwint",
+                    type: "string"
+                },
+                Horse: {
+                    title: "Horse",
+                    type: "string"
+                },
+                Inv: {
+                    title: "Inv",
+                    type: "string"
+                },
+                Journal: {
+                    title: "Journal",
+                    type: "string"
+                },
+                Jump: {
+                    title: "Jump",
+                    type: "string"
+                },
+                Left: {
+                    title: "Left",
+                    type: "string"
+                },
+                Left2: {
+                    title: "Left2",
+                    type: "string"
+                },
+                LeftMouse: {
+                    title: "LeftMouse",
+                    type: "string"
+                },
+                Map: {
+                    title: "Map",
+                    type: "string"
+                },
+                Meditation: {
+                    title: "Meditation",
+                    type: "string"
+                },
+                FastMenu: {
+                    title: "Menu",
+                    type: "string"
+                },
+                MiddleMouse: {
+                    title: "MiddleMouse",
+                    type: "string"
+                },
+                PCALT: {
+                    title: "Combat Alternate",
+                    type: "string"
+                },
+                RightMouse: {
+                    title: "Parry",
+                    type: "string"
+                },
+                Potion1: {
+                    title: "Potion1",
+                    type: "string"
+                },
+                Potion2: {
+                    title: "Potion2",
+                    type: "string"
+                },
+                Quest: {
+                    title: "Quest",
+                    type: "string"
+                },
+                RadMenu: {
+                    title: "Radial Menu (signs and wep wheel)",
+                    type: "string"
+                },
+                Right: {
+                    title: "Right",
+                    type: "string"
+                },
+                Right2: {
+                    title: "Right2",
+                    type: "string"
+                },
+                Roll: {
+                    title: "Roll",
+                    type: "string"
+                },
+                Sheathe: {
+                    title: "Sheathe",
+                    type: "string"
+                },
+                Sign: {
+                    title: "Sign",
+                    type: "string"
+                },
+                Sprint: {
+                    title: "Sprint",
+                    type: "string"
+                },
+                Surface: {
+                    title: "Surface",
+                    type: "string"
+                },
+                SprintToggle: {
+                    title: "SprintToggle",
+                    type: "string"
+                },
+                Up: {
+                    title: "Up",
+                    type: "string"
+                },
+                Up2: {
+                    title: "Up2",
+                    type: "string"
+                },
+                WalkToggle: {
+                    title: "WalkToggle",
+                    type: "string"
+                }
+            },
+            value: {
+                1: "1",
+                2: "2",
+                3: "3",
+                4: "4",
+                5: "5",
+                6: "6",
+                7: "7",
+                Alch: "L",
+                Bestiary: "B",
+                CameraLock: "Z",
+                Candle: "E",
+                CantorGallop: "LShift",
+                Character: "K",
+                Craft: "O",
+                DiveDown: "C",
+                Dodge: "LAlt",
+                Down: "Down",
+                Down2: "S",
+                E: "E",
+                FastMenu: "Enter",
+                FastTravel: "E",
+                Escape: "Escape",
+                F1: "F1",
+                Focus: "RightMouse",
+                Follow: "X",
+                GatherHerbs: "E",
+                Glossary: "G",
+                Gwint: "H",
+                Horse: "X",
+                Inv: "I",
+                Journal: "J",
+                Jump: "Space",
+                Left: "Left",
+                Left2: "A",
+                LeftMouse: "LeftMouse",
+                Map: "M",
+                Meditation: "N",
+                MiddleMouse: "MiddleMouse",
+                PCALT: "LShift",
+                Potion1: "R",
+                Potion2: "F",
+                Quest: "V",
+                RadMenu: "Tab",
+                Right: "Right",
+                Right2: "D",
+                RightMouse: "RightMouse",
+                Roll: "Space",
+                Sheathe: "C",
+                Sign: "Q",
+                Sprint: "LShift",
+                SprintToggle: "CapsLock",
+                Surface: "Space",
+                Up: "Up",
+                Up2: "W",
+                WalkToggle: "LControl"
+            },
+            onSubmit: function(t, e) {
+                    $("buffer").html(b);
+                    var i = Object.keys(e);
+                    for (var n = 0; n < i.length; n++) b = b.replaceAll("{" + i[n] + "}", e[i[n]]);
+                    b = b.replaceAll("{.*}", "None"), download = b, $("#buffer").html(b)
+            }
+        })
+    }()
+    String.prototype.replaceAll = function(t, e) {
+        return void 0 === e ? this.toString() : this.split(t).join(e)
+    };
