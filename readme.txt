@@ -8,3 +8,5 @@ Warning, still in development. I haven't played through the whole game yet.
 This website is not officially endorsed or associated with CDPR or the Witcher video games.
 
 https://grantrpickett.github.io/witcher3keyrebinder/
+
+Now supports some game pad rebinding. The situation where some bindings are press and hold while others are just a press might cause some issues. I haven't tested this much. If you had to press and hold before you still have to press and hold the new button.
